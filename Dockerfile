@@ -1,5 +1,3 @@
-FROM apache/apisix:3.11.0-redhat
+FROM bitnami/apisix:3.12.0
 
-RUN yum update -y \
-	&& yum install -y openjdk-21-jdk \
-	&& yum clean all
+RUN apt-get -y install openjdk-21-jdk
