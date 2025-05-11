@@ -55,9 +55,8 @@ RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ || exit 1 ; \
     done
 RUN apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives
-RUN update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX && \
-    DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
-RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
+# RUN update-locale LANG=C.UTF-8 LC_MESSAGES=POSIX && \ DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales
+# RUN echo 'en_US.UTF-8 UTF-8' >> /etc/locale.gen && locale-gen
 
 RUN useradd -r -u 1001 -g root apisix
 RUN chmod g+rwX /opt/bitnami/apisix/conf && mkdir -p /usr/local/apisix/logs && chmod -R g+rwX /usr/local/apisix && ln -s /opt/bitnami/apisix/conf /usr/local/apisix && ln -s /opt/bitnami/apisix/deps /usr/local/apisix && ln -s /opt/bitnami/apisix/openresty/luajit/share/lua/*/apisix /usr/local/apisix
